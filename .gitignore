@@ -1,0 +1,13 @@
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+
+logs/
+config/application-dev.yml
+config/application-uat.yml
+config/application-prod.yml
+.env

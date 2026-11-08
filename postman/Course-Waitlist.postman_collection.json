@@ -1,0 +1,20 @@
+{
+  "info": {
+    "name": "Course Waitlist Assessment",
+    "description": "Minimal API walkthrough for the course enrollment and FIFO waitlist service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{"key": "baseUrl", "value": "http://localhost:8080"}, {"key": "courseId", "value": "1"}],
+  "item": [
+    {"name": "Create course (capacity 2)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"title\":\"Java Fundamentals\",\"capacity\":2}"}, "url": "{{baseUrl}}/api/courses"}},
+    {"name": "Create learner L1", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"id\":\"L1\",\"name\":\"Asha\",\"prerequisiteCompleted\":true}"}, "url": "{{baseUrl}}/api/learners"}},
+    {"name": "Create learner L2", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"id\":\"L2\",\"name\":\"Ravi\",\"prerequisiteCompleted\":true}"}, "url": "{{baseUrl}}/api/learners"}},
+    {"name": "Create learner L3", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"id\":\"L3\",\"name\":\"Maya\",\"prerequisiteCompleted\":true}"}, "url": "{{baseUrl}}/api/learners"}},
+    {"name": "Enroll L1", "request": {"method": "POST", "url": "{{baseUrl}}/api/courses/{{courseId}}/registrations?learnerId=L1"}},
+    {"name": "Enroll L2", "request": {"method": "POST", "url": "{{baseUrl}}/api/courses/{{courseId}}/registrations?learnerId=L2"}},
+    {"name": "Waitlist L3", "request": {"method": "POST", "url": "{{baseUrl}}/api/courses/{{courseId}}/registrations?learnerId=L3"}},
+    {"name": "Drop L1 and promote L3", "request": {"method": "DELETE", "url": "{{baseUrl}}/api/courses/{{courseId}}/registrations/L1"}},
+    {"name": "View registrations", "request": {"method": "GET", "url": "{{baseUrl}}/api/courses/{{courseId}}/registrations"}},
+    {"name": "View course counts", "request": {"method": "GET", "url": "{{baseUrl}}/api/courses/{{courseId}}"}}
+  ]
+}
